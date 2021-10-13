@@ -53,11 +53,11 @@ class LoginController extends Controller
 
         if($user->role_id == $admin->id)
         {
-            return '/admin/dashboard';
+            return route('dashboard.admin');
         }
         elseif($user->role_id  == $client->id)
         {
-            return '/dashboard';
+            return route('dashboard.client');
         }
 
     }

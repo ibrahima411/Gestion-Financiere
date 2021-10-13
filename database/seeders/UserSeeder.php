@@ -29,6 +29,17 @@ class UserSeeder extends Seeder
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ],
 
+            [
+                'id' => 2,
+                'nom_user' => 'diop',
+                'prenom_user' => 'maty',
+                'email' => 'diopmaty@gmail.com',
+                'role_id' => 1,
+                'password' => bcrypt('matydiop1234'),
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            ],
+
         ];
 
         DB::table('users')->insert($user);

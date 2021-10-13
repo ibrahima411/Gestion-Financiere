@@ -2,8 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Role;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Admin
 {
@@ -16,6 +18,11 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        $admin = Role::where('code_role', 'AD')->first();
+        if (Auth::user() &&  Auth::user()->role_id == $admin->id) {
+            return $next($request);
+        }
+
+        return redirect('login');
     }
 }
