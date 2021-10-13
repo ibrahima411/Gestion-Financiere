@@ -1,107 +1,97 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html dir="ltr">
 
-<!-- Mirrored from coderthemes.com/codefox/layouts/vertical/pages-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Jan 2020 14:49:57 GMT -->
-    <head>
-        <meta charset="utf-8" />
-        <title>Login | Codefox - Responsive Bootstrap 4 Admin Dashboard</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-        <meta content="Coderthemes" name="author" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="auth/assets/images/favicon.png">
+    <title>soengsouy.com</title>
+    <!-- Custom CSS -->
+    <link href="auth/dist/css/style.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
-        <!-- Bootstrap select pluings -->
-        <link href="assets/libs/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+</head>
 
-        <!-- App css -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
-        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css"  id="app-stylesheet" />
-    </head>
-
-    <body class="authentication-bg">
-        <div class="home-btn d-none d-sm-block">
-            <a href="index.html"><i class="fas fa-home h2"></i></a>
+<body>
+    <div class="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
         </div>
-        <div class="account-pages my-5 pt-5">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8 col-lg-6 col-xl-5">
-                        <div>
-
-                            <div class="text-center authentication-logo mb-4">
-                                <a href="index.html" class="logo-dark">
-                                    <span><img src="assets/images/logo-dark.png" alt="" height="30"></span>
-                                </a>
-                                <a href="index.html" class="logo-light">
-                                    <span><img src="assets/images/logo-light.png" alt="" height="30"></span>
-                                </a>
-                            </div>
-
-                            <form method="POST" action="{{ route('login') }}">
-                                @csrf
-                                <div class="form-group mb-3">
-                                    <label for="emailaddress">Email address</label>
-                                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Adresse email">
-                                    @error('email')
-                                        <small class="form-alert">{{ $message }}</small>
-                                    @enderror
-                                </div>
-
-                                <a href="page-recoverpw.html" class="text-muted float-right">Forgot your password?</a>
-
-                                <div class="form-group mb-3">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="pass" placeholder="Mot de passe">
-                                    @error('password')
-                                        <small class="form-alert">{{ $message }}</small>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked>
-                                        <label class="custom-control-label" for="checkbox-signin">Remember me</label>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
+            style="background:url(auth/assets/images/big/auth-bg.jpg) no-repeat center center;">
+            <div class="auth-box row">
+                <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url(auth/assets/images/big/3.jpg);">
+                </div>
+                <div class="col-lg-5 col-md-7 bg-white">
+                    <div class="p-3">
+                        <div class="text-center">
+                            <img src="auth/assets/images/big/icon.png" alt="wrapkit">
+                        </div>
+                        <h2 class="mt-3 text-center">Sign In</h2>
+                        <p class="text-center">Enter your email address and password to access admin panel.</p>
+                        <form class="mt-4" method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="text-dark" for="uname">Email</label>
+                                        <input class="form-control" id="uname" type="text"
+                                            placeholder="email" name="email">
                                     </div>
                                 </div>
-
-                                <div class="form-group text-center mb-3">
-                                    <button class="btn btn-primary btn-lg width-lg btn-rounded" type="submit">Connexion </button>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="text-dark" for="pwd">Password</label>
+                                        <input class="form-control" id="pwd" type="password"
+                                            placeholder="assword" name="password">
+                                    </div>
                                 </div>
-
-                            </form>
-
-                        </div>
-                        <!-- end card -->
-
-                        <div class="row">
-                            <div class="col-sm-12 text-center">
-                                <p class="text-muted">Don't have an account? <a href="page-register.html" class="text-dark ml-1">Sign Up</a></p>
+                                <div class="col-lg-12 text-center">
+                                    <button type="submit" class="btn btn-block btn-dark">Connexion</button>
+                                </div>
+                                <div class="col-lg-12 text-center mt-5">
+                                    Don't have an account? <a href="#" class="text-danger">S'inscrire</a>
+                                </div>
                             </div>
-                        </div>
-                        <!-- end row -->
-
-                    </div> <!-- end col -->
+                        </form>
+                    </div>
                 </div>
-                <!-- end row -->
             </div>
-            <!-- end container -->
         </div>
-        <!-- end page -->
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    <script src="auth/assets/libs/jquery/dist/jquery.min.js "></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="auth/assets/libs/popper.js/dist/umd/popper.min.js "></script>
+    <script src="auth/assets/libs/bootstrap/dist/js/bootstrap.min.js "></script>
+    <!-- ============================================================== -->
+    <!-- This page plugin js -->
+    <!-- ============================================================== -->
+    <script>
+        $(".preloader ").fadeOut();
+    </script>
+</body>
 
-
-        <!-- Vendor js -->
-        <script src="assets/js/vendor.min.js"></script>
-
-        <!-- Bootstrap select plugin -->
-        <script src="assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
-
-        <!-- App js -->
-        <script src="assets/js/app.min.js"></script>
-
-    </body>
-
-<!-- Mirrored from coderthemes.com/codefox/layouts/vertical/pages-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Jan 2020 14:49:59 GMT -->
 </html>
