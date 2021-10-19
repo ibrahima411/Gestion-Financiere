@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Source;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Image as img;
 
 class SourceController extends Controller
 {
@@ -13,7 +17,8 @@ class SourceController extends Controller
      */
     public function index()
     {
-        return View('client.source.index');
+        $source = Source::orderBy('created_at', 'desc')->paginate(20);
+        return View('client.source.index', compact('source'));
     }
 
     /**
@@ -23,6 +28,7 @@ class SourceController extends Controller
      */
     public function create()
     {
+
         return View('client.source.create');
     }
 
@@ -34,7 +40,22 @@ class SourceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $source = Source::create([
+            'libelle' => $request->libelle,
+            'description' => $request->description,
+            'user_id' => Auth::id(),
+        ]);
+        if($request->hasFile('photo_source')){
+            $photo = $request->photo_source;
+            $image_new_name = time() . '.' . $photo->getClientOriginalExtension();
+            $photo->move('public/storage/source/', $image_new_name);
+            $source->photo_source = '/public/storage/source/'.$image_new_name;
+            }
+
+            $source->save();
+            Session::flash('success', 'Une nouvelle Source d\'Argent vient d\'être crée avec succès');
+
+            return redirect()->route('source.index');
     }
 
     /**

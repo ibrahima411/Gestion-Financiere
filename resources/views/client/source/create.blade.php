@@ -1,101 +1,168 @@
-@extends('client.layouts.guest')
+@extends('layouts.guest')
     @section('content')
-    <!-- header -->
+        <!-- Begin page -->
+        <div class="wrapper">
+            <!-- ========== Left Sidebar Start ========== -->
+            @include('layouts.siderbar')
+            <!-- Left Sidebar End -->
 
-    <!-- sidebar -->
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
 
-                <!-- Begin page -->
-                <div id="wrapper">
-
-
+            <div class="content-page">
+                <div class="content">
                     <!-- Topbar Start -->
-                    @include('client.layouts.header')
+
+                    @include('layouts.header')
                     <!-- end Topbar -->
+                    <br /><br />
+                    <!-- Start Content-->
+                    <h2>Une nouvelle source de revenue</h2>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="input-sizes-preview">
+                                                <form class="setting-form" method="POST" action="{{ route('source.store') }}"  enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="mb-3">
+                                                        <label for="example-input-large" class="form-label">libelle</label>
+                                                        <input type="text" id="example-input-large" name="libelle" class="form-control form-control-lg">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="example-input-large" class="form-label">description</label>
+                                                        <input type="text" id="example-input-large" name="description" class="form-control form-control-lg">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label class="form-label">File input</label>
+                                                        <input class="form-control" name="photo_source" type="file">
+                                                    </div>
+                                                    <div>
+                                                        <button class="btn btn-primary mt-4 mb-2 btn-rounded" name="photo_source">Ajouter</button>
+                                                    </div>
+                                                </form>
+                                            </div> <!-- end preview-->
 
 
-                    <!-- ========== Left Sidebar Start ========== -->
-                    @include('client.layouts.siderbar')
-                    <!-- Left Sidebar End -->
+                                        </div> <!-- end tab-content-->
 
-                    <!-- ============================================================== -->
-                    <!-- Start Page Content here -->
-                    <!-- ============================================================== -->
-
-                    <div class="content-page">
-                        <div class="content">
-
-                            <!-- Start Content-->
-
-                            <!-- end container-fluid -->
-
-                        </div> <!-- end content -->
-
-
-
-                        <!-- Footer Start -->
-                        @include('client.layouts.footer')
-                        <!-- end Footer -->
+                                    </div> <!-- end card-body -->
+                                </div> <!-- end card -->
+                            </div> <!-- end col -->
+                        </div>
 
                     </div>
 
-                    <!-- ============================================================== -->
-                    <!-- End Page content -->
-                    <!-- ============================================================== -->
+                    <!-- container -->
 
-                </div>
-                <!-- END wrapper -->
+                </div> <!-- content -->
 
-                        <!-- Right Sidebar -->
-                        <div class="right-bar">
-                            <div class="rightbar-title">
-                                <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                                    <i class="mdi mdi-close"></i>
-                                </a>
-                                <h5 class="m-0 text-white">Theme Customizer</h5>
-                            </div>
-                            <div class="slimscroll-menu">
+                <!-- Footer Start -->
+                @include('layouts.footer')
+                <!-- end Footer -->
 
-                                <div class="p-3">
-                                    <div class="alert alert-warning" role="alert">
-                                        <strong>Customize </strong> the overall color scheme, layout, etc.
-                                    </div>
-                                    <div class="mb-2">
-                                        <img src="assets/images/layouts/light.png" class="img-fluid img-thumbnail" alt="">
-                                    </div>
-                                    <div class="custom-control custom-switch mb-3">
-                                        <input type="checkbox" class="custom-control-input theme-choice" id="light-mode-switch" checked />
-                                        <label class="custom-control-label" for="light-mode-switch">Light Mode</label>
-                                    </div>
+            </div>
 
-                                    <div class="mb-2">
-                                        <img src="assets/images/layouts/dark.png" class="img-fluid img-thumbnail" alt="">
-                                    </div>
-                                    <div class="custom-control custom-switch mb-3">
-                                        <input type="checkbox" class="custom-control-input theme-choice" id="dark-mode-switch" data-bsStyle="assets/css/bootstrap-dark.min.css"
-                                            data-appStyle="assets/css/app-dark.min.css" />
-                                        <label class="custom-control-label" for="dark-mode-switch">Dark Mode</label>
-                                    </div>
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
 
-                                    <div class="mb-2">
-                                        <img src="assets/images/layouts/rtl.png" class="img-fluid img-thumbnail" alt="">
-                                    </div>
-                                    <div class="custom-control custom-switch mb-3">
-                                        <input type="checkbox" class="custom-control-input theme-choice" id="rtl-mode-switch" data-appStyle="assets/css/app-rtl.min.css" />
-                                        <label class="custom-control-label" for="rtl-mode-switch">RTL Mode</label>
-                                    </div>
 
-                                    <div class="mb-2">
-                                        <img src="assets/images/layouts/dark-rtl.png" class="img-fluid img-thumbnail" alt="">
-                                    </div>
-                                    <div class="custom-control custom-switch mb-5">
-                                        <input type="checkbox" class="custom-control-input theme-choice" id="dark-rtl-mode-switch" data-bsStyle="assets/css/bootstrap-dark.min.css"
-                                            data-appStyle="assets/css/app-dark-rtl.min.css" />
-                                        <label class="custom-control-label" for="dark-rtl-mode-switch">Dark RTL Mode</label>
-                                    </div>
+        </div>
+        <!-- END wrapper -->
 
-                                    <a href="https://wrapbootstrap.com/theme/codefox-admin-dashboard-template-WB0X27670?ref=coderthemes" class="btn btn-danger btn-block mt-3" target="_blank"><i class="mdi mdi-download mr-1"></i> Download Now</a>
-                                </div>
-                            </div> <!-- end slimscroll-menu-->
-                        </div>
+
+        <!-- Right Sidebar -->
+        <div class="end-bar">
+
+            <div class="rightbar-title">
+                <a href="javascript:void(0);" class="end-bar-toggle float-end">
+                    <i class="dripicons-cross noti-icon"></i>
+                </a>
+                <h5 class="m-0">Settings</h5>
+            </div>
+
+            <div class="rightbar-content h-100" data-simplebar="">
+
+                <div class="p-3">
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Customize </strong> the overall color scheme, sidebar menu, etc.
+                    </div>
+
+                    <!-- Settings -->
+                    <h5 class="mt-3">Color Scheme</h5>
+                    <hr class="mt-1">
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="color-scheme-mode" value="light" id="light-mode-check" checked="">
+                        <label class="form-check-label" for="light-mode-check">Light Mode</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="color-scheme-mode" value="dark" id="dark-mode-check">
+                        <label class="form-check-label" for="dark-mode-check">Dark Mode</label>
+                    </div>
+
+
+                    <!-- Width -->
+                    <h5 class="mt-4">Width</h5>
+                    <hr class="mt-1">
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="width" value="fluid" id="fluid-check" checked="">
+                        <label class="form-check-label" for="fluid-check">Fluid</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="width" value="boxed" id="boxed-check">
+                        <label class="form-check-label" for="boxed-check">Boxed</label>
+                    </div>
+
+
+                    <!-- Left Sidebar-->
+                    <h5 class="mt-4">Left Sidebar</h5>
+                    <hr class="mt-1">
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="theme" value="default" id="default-check">
+                        <label class="form-check-label" for="default-check">Default</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="theme" value="light" id="light-check" checked="">
+                        <label class="form-check-label" for="light-check">Light</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" name="theme" value="dark" id="dark-check">
+                        <label class="form-check-label" for="dark-check">Dark</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="compact" value="fixed" id="fixed-check" checked="">
+                        <label class="form-check-label" for="fixed-check">Fixed</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="compact" value="condensed" id="condensed-check">
+                        <label class="form-check-label" for="condensed-check">Condensed</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="compact" value="scrollable" id="scrollable-check">
+                        <label class="form-check-label" for="scrollable-check">Scrollable</label>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button class="btn btn-primary" id="resetBtn">Reset to Default</button>
+
+                        <a href="../../product/hyper-responsive-admin-dashboard-template/index.htm" class="btn btn-danger mt-3" target="_blank"><i class="mdi mdi-basket me-1"></i> Purchase Now</a>
+                    </div>
+                </div> <!-- end padding-->
+
+            </div>
+        </div>
+
+        <div class="rightbar-overlay"></div>
     @endsection
-

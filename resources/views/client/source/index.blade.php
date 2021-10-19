@@ -1,141 +1,231 @@
-@extends('client.layouts.guest')
+@extends('layouts.guest')
     @section('content')
-    <!-- header -->
+        <!-- Begin page -->
+        <div class="wrapper">
+            <!-- ========== Left Sidebar Start ========== -->
+            @include('layouts.siderbar')
+            <!-- Left Sidebar End -->
 
-    <!-- sidebar -->
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
 
-                <!-- Begin page -->
-                <div id="wrapper">
-
-
+            <div class="content-page">
+                <div class="content">
                     <!-- Topbar Start -->
-                    @include('client.layouts.header')
+
+                    @include('layouts.header')
                     <!-- end Topbar -->
 
+                    <!-- Start Content-->
+                    <br />
+                    <div class="container-fluid">
+                        {{-- <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
 
-                    <!-- ========== Left Sidebar Start ========== -->
-                    @include('client.layouts.siderbar')
-                    <!-- Left Sidebar End -->
+                                        <div class="btn-group d-block mb-2">
+                                            <a type="button" href="{{route('source.create')}}" class="btn btn-success" ><i class="mdi mdi-plus"></i> Nouvelle source </a>
+                                        </div>
 
-                    <!-- ============================================================== -->
-                    <!-- Start Page Content here -->
-                    <!-- ============================================================== -->
+                                        <ul class="nav nav-tabs nav-bordered mb-2">
+                                        </ul> <!-- end nav-->
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="buttons-table-preview">
+                                                <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
+                                                    <thead>
 
-                    <div class="content-page">
-                        <div class="content">
-
-                            <!-- Start Content-->
-                            <div class="container-fluid">
-
-                                <!-- start page title -->
-                                <div class="col-lg-12 sticky-top">
-                                    <br />
-                                    <br />
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table class="table m-0">
-                                                    <thead class="bg-success text-white">
                                                         <tr>
-                                                            <th>PHOTO</th>
-                                                            <th>ID</th>
-                                                            <th>LIBELLE</th>
-                                                            <th>DESCRIPTION</th>
-                                                            <th>ACTION</th>
+                                                            <th>Photo</th>
+                                                            <th>Id</th>
+                                                            <th>Libelle</th>
+                                                            <th>Description</th>
+                                                            <th>Date</th>
+                                                            <th>Action</th>
                                                         </tr>
                                                     </thead>
+
                                                     <tbody>
+                                                        @foreach ($source as $source)
                                                         <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>Otto</td>
+                                                            <td><img src="{{asset($source->photo_source)}}" alt="" style="width: 60px;"></td>
+                                                            <td>{{$source->id}}</td>
+                                                            <td>{{$source->libelle}}</td>
+                                                            <td>{{$source->description}}</td>
+                                                            <td>{{$source->created_at}}</td>
                                                             <td>
-                                                                <a style="text-align: left; color:green;" class="center"><i class="fas fa-edit" style="font-size:20px;"></i></a>
-                                                                <a ><i class="fas fa-edit" style="font-size:20px; text-align: right; color:red;"></i></a>
+                                                                <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                                                <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                                <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                                             </td>
+                                                        @endforeach
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                            </div>
+                                            </div> <!-- end preview-->
+                                        </div> <!-- end tab-content-->
+
+                                    </div> <!-- end card body-->
+                                </div> <!-- end card -->
+                            </div><!-- end col-->
+                        </div> --}}
+                        <div class="row">
+                            @foreach ($source as $source)
+                                <div class="col-md-4 col-xxl-3">
+                                    <!-- project card -->
+                                    <div class="card d-block">
+                                        <!-- project-thumbnail -->
+                                        <img class="card-img-top" @if($source->photo_source == null) src="assets/images/projects/project-1.jpg" @else src="{{asset($source->photo_source)}}" @endif>
+                                        <div class="card-img-overlay">
+                                            <div class="badge bg-secondary text-light p-1">Ongoing</div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- end page title -->
 
+                                        <div class="card-body position-relative">
+                                            <!-- project title-->
+                                            <h4 class="mt-0">
+                                                <a href="apps-projects-details.html" class="text-title">{{$source->libelle}}</a>
+                                            </h4>
 
-                                <!-- end row -->
+                                            <!-- project detail-->
+                                            <p class="mb-3" style="text-align: right;">
+                                                <span class="pe-2 text-nowrap">
+                                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                                </span>
+                                                <span class=" pe-2 text-nowrap">
+                                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                </span>
+                                                <span class="pe-2 text-nowrap">
+                                                <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                </span>
+                                            </p>
+                                            <div class="mb-3" id="tooltip-container4">
+                                                <a href="javascript:void(0);" data-bs-container="#tooltip-container4" data-bs-toggle="tooltip" data-bs-placement="top" title="Mat Helme" class="d-inline-block">
+                                                    50000 FCFA
+                                                </a>
+                                            </div>
 
-                            </div> <!-- end container-fluid -->
-
-                        </div> <!-- end content -->
-
-
-
-                        <!-- Footer Start -->
-                        @include('client.layouts.footer')
-                        <!-- end Footer -->
+                                            <!-- project progress-->
+                                            <p class="mb-2 fw-bold">Progress <span class="float-end">45%</span></p>
+                                            <div class="progress progress-sm">
+                                                <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
+                                                </div><!-- /.progress-bar -->
+                                            </div><!-- /.progress -->
+                                        </div> <!-- end card-body-->
+                                    </div> <!-- end card-->
+                                </div> <!-- end col -->
+                            @endforeach
+                        </div>
 
                     </div>
 
-                    <!-- ============================================================== -->
-                    <!-- End Page content -->
-                    <!-- ============================================================== -->
+                    <!-- container -->
 
-                </div>
-                <!-- END wrapper -->
+                </div> <!-- content -->
 
-                        <!-- Right Sidebar -->
-                        <div class="right-bar">
-                            <div class="rightbar-title">
-                                <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                                    <i class="mdi mdi-close"></i>
-                                </a>
-                                <h5 class="m-0 text-white">Theme Customizer</h5>
-                            </div>
-                            <div class="slimscroll-menu">
+                <!-- Footer Start -->
+                @include('layouts.footer')
+                <!-- end Footer -->
 
-                                <div class="p-3">
-                                    <div class="alert alert-warning" role="alert">
-                                        <strong>Customize </strong> the overall color scheme, layout, etc.
-                                    </div>
-                                    <div class="mb-2">
-                                        <img src="assets/images/layouts/light.png" class="img-fluid img-thumbnail" alt="">
-                                    </div>
-                                    <div class="custom-control custom-switch mb-3">
-                                        <input type="checkbox" class="custom-control-input theme-choice" id="light-mode-switch" checked />
-                                        <label class="custom-control-label" for="light-mode-switch">Light Mode</label>
-                                    </div>
+            </div>
 
-                                    <div class="mb-2">
-                                        <img src="assets/images/layouts/dark.png" class="img-fluid img-thumbnail" alt="">
-                                    </div>
-                                    <div class="custom-control custom-switch mb-3">
-                                        <input type="checkbox" class="custom-control-input theme-choice" id="dark-mode-switch" data-bsStyle="assets/css/bootstrap-dark.min.css"
-                                            data-appStyle="assets/css/app-dark.min.css" />
-                                        <label class="custom-control-label" for="dark-mode-switch">Dark Mode</label>
-                                    </div>
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
 
-                                    <div class="mb-2">
-                                        <img src="assets/images/layouts/rtl.png" class="img-fluid img-thumbnail" alt="">
-                                    </div>
-                                    <div class="custom-control custom-switch mb-3">
-                                        <input type="checkbox" class="custom-control-input theme-choice" id="rtl-mode-switch" data-appStyle="assets/css/app-rtl.min.css" />
-                                        <label class="custom-control-label" for="rtl-mode-switch">RTL Mode</label>
-                                    </div>
 
-                                    <div class="mb-2">
-                                        <img src="assets/images/layouts/dark-rtl.png" class="img-fluid img-thumbnail" alt="">
-                                    </div>
-                                    <div class="custom-control custom-switch mb-5">
-                                        <input type="checkbox" class="custom-control-input theme-choice" id="dark-rtl-mode-switch" data-bsStyle="assets/css/bootstrap-dark.min.css"
-                                            data-appStyle="assets/css/app-dark-rtl.min.css" />
-                                        <label class="custom-control-label" for="dark-rtl-mode-switch">Dark RTL Mode</label>
-                                    </div>
+        </div>
+        <!-- END wrapper -->
 
-                                    <a href="https://wrapbootstrap.com/theme/codefox-admin-dashboard-template-WB0X27670?ref=coderthemes" class="btn btn-danger btn-block mt-3" target="_blank"><i class="mdi mdi-download mr-1"></i> Download Now</a>
-                                </div>
-                            </div> <!-- end slimscroll-menu-->
-                        </div>
+
+        <!-- Right Sidebar -->
+        <div class="end-bar">
+
+            <div class="rightbar-title">
+                <a href="javascript:void(0);" class="end-bar-toggle float-end">
+                    <i class="dripicons-cross noti-icon"></i>
+                </a>
+                <h5 class="m-0">Settings</h5>
+            </div>
+
+            <div class="rightbar-content h-100" data-simplebar="">
+
+                <div class="p-3">
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Customize </strong> the overall color scheme, sidebar menu, etc.
+                    </div>
+
+                    <!-- Settings -->
+                    <h5 class="mt-3">Color Scheme</h5>
+                    <hr class="mt-1">
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="color-scheme-mode" value="light" id="light-mode-check" checked="">
+                        <label class="form-check-label" for="light-mode-check">Light Mode</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="color-scheme-mode" value="dark" id="dark-mode-check">
+                        <label class="form-check-label" for="dark-mode-check">Dark Mode</label>
+                    </div>
+
+
+                    <!-- Width -->
+                    <h5 class="mt-4">Width</h5>
+                    <hr class="mt-1">
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="width" value="fluid" id="fluid-check" checked="">
+                        <label class="form-check-label" for="fluid-check">Fluid</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="width" value="boxed" id="boxed-check">
+                        <label class="form-check-label" for="boxed-check">Boxed</label>
+                    </div>
+
+
+                    <!-- Left Sidebar-->
+                    <h5 class="mt-4">Left Sidebar</h5>
+                    <hr class="mt-1">
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="theme" value="default" id="default-check">
+                        <label class="form-check-label" for="default-check">Default</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="theme" value="light" id="light-check" checked="">
+                        <label class="form-check-label" for="light-check">Light</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" name="theme" value="dark" id="dark-check">
+                        <label class="form-check-label" for="dark-check">Dark</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="compact" value="fixed" id="fixed-check" checked="">
+                        <label class="form-check-label" for="fixed-check">Fixed</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="compact" value="condensed" id="condensed-check">
+                        <label class="form-check-label" for="condensed-check">Condensed</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="compact" value="scrollable" id="scrollable-check">
+                        <label class="form-check-label" for="scrollable-check">Scrollable</label>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button class="btn btn-primary" id="resetBtn">Reset to Default</button>
+
+                        <a href="../../product/hyper-responsive-admin-dashboard-template/index.htm" class="btn btn-danger mt-3" target="_blank"><i class="mdi mdi-basket me-1"></i> Purchase Now</a>
+                    </div>
+                </div> <!-- end padding-->
+
+            </div>
+        </div>
+
+        <div class="rightbar-overlay"></div>
     @endsection
-
