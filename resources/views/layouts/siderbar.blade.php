@@ -78,7 +78,7 @@
                             <a href="{{route('source.create')}}">Ajouter source</a>
                         </li>
                         <li>
-                            <a href="{{route('source.index')}}">Liste source</a>
+                            <a href="{{route('source.index')}}">Mes Sources</a>
                         </li>
                         {{-- <li>
                             <a href="apps-ecommerce-orders.html">Orders</a>
@@ -129,10 +129,10 @@
                 <div class="collapse" id="sidebarProjects">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="#">Liste des entres</a>
+                            <a href="{{route('entre.index')}}">Liste des entres</a>
                         </li>
                         <li>
-                            <a href="#">Ajouter Argent</a>
+                            <a href="{{route('entre.create')}}">Ajouter Argent</a>
                         </li>
                     </ul>
                 </div>

@@ -6,7 +6,7 @@ use App\Models\Source;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Image as img;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class SourceController extends Controller
 {
@@ -48,7 +48,9 @@ class SourceController extends Controller
         if($request->hasFile('photo_source')){
             $photo = $request->photo_source;
             $image_new_name = time() . '.' . $photo->getClientOriginalExtension();
-            $photo->move('public/storage/source/', $image_new_name);
+            $image_resize = Image::make($photo->getRealPath());
+            $image_resize->resize(800, 500);
+            $image_resize->save(public_path('public/storage/source/' .$image_new_name));
             $source->photo_source = '/public/storage/source/'.$image_new_name;
             }
 
@@ -77,7 +79,8 @@ class SourceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $source = Source::find($id);
+        return view('client.source.edit', compact('source'));
     }
 
     /**
@@ -89,7 +92,26 @@ class SourceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $source = Source::find($id);
+
+        if($request->hasFile('photo_source')){
+            $photo = $request->photo_source;
+            $image_new_name = time() . '.' . $photo->getClientOriginalExtension();
+            $image_resize = Image::make($photo->getRealPath());
+            $image_resize->resize(800, 500);
+            $image_resize->save(public_path('public/storage/source/' .$image_new_name));
+            $source->photo_source = '/public/storage/source/'.$image_new_name;
+            }
+
+
+            $source->libelle = $request->libelle;
+            $source->description = $request->description;
+            $source->user_id = Auth::id();
+
+            $source->save();
+            Session::flash('success', 'Source vient d\'être modifié avec succès');
+
+            return redirect()->route('source.index');
     }
 
     /**
@@ -100,6 +122,9 @@ class SourceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $source = Source::find($id);
+        $source->delete();
+
+        return redirect()->route('source.index');
     }
 }

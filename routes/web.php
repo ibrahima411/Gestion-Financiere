@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SourceController;
-
+use App\Http\Controllers\ArgentEntreController;
 /*
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 |--------------------------------------------------------------------------
@@ -52,5 +52,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function() {
 Route::middleware(['auth', 'client'])->group(function() {
     Route::get('/dashboard', [HomeController::class, 'client'])->name('dashboard.client');
     Route::resource('/source', SourceController::class);
+    Route::resource('/entre', ArgentEntreController::class);
 
 });
